@@ -1,0 +1,48 @@
+name: pas_app_new
+description: A new Flutter project.
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.11.0 <4.0.0"
+  flutter: ">=3.41.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  intl: ^0.18.1
+
+  # Firebase
+  firebase_core: ^4.5.0
+  firebase_auth: ^6.2.0
+  cloud_firestore: ^6.1.3
+  firebase_storage: ^13.1.0
+  firebase_messaging: ^16.1.2
+
+  # Notifications
+  flutter_local_notifications: ^20.1.0
+
+
+  # Google Maps
+  google_maps_flutter: ^2.14.2
+
+  # URL launcher
+  url_launcher: ^6.3.2
+
+  # UI & utilities
+  font_awesome_flutter: ^10.12.0
+  http: ^1.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # Lints compatible with Dart 3.11
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
