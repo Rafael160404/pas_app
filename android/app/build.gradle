@@ -17,8 +17,8 @@ def flutterVersionName = localProperties.getProperty("flutter.versionName") ?: "
 
 android {
     namespace = "com.example.pas_app_new"
-    compileSdk = 36
-    ndkVersion = flutter.ndkVersion
+    compileSdk = 34
+    ndkVersion = "27.0.12077973"  // <--- I-UPDATE ITO
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -32,8 +32,8 @@ android {
 
     defaultConfig {
         applicationId = "com.example.pas_app_new"
-        minSdkVersion = flutter.minSdkVersion
-        targetSdkVersion = 36      // ✅ Correct property
+        minSdk = 23  // <--- I-UPDATE ITO SA 23
+        targetSdk = 34
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
     }
@@ -41,9 +41,6 @@ android {
     buildTypes {
         release {
             signingConfig = signingConfigs.debug
-            minifyEnabled false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
 }
