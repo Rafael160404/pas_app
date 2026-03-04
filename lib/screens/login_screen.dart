@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 width: containerWidth,
                 padding: EdgeInsets.all(isMobile ? 20 : 30),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withOpacity(0.85), // Lighter background for better contrast
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.white.withOpacity(0.2)),
                 ),
@@ -87,7 +87,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         style: TextStyle(
                           fontSize: isDesktop ? 80 : (isTablet ? 70 : 60),
                           fontWeight: FontWeight.bold,
-                          color: Colors.white,
+                          color: Colors.black, // Black text
                         ),
                       ),
                       const SizedBox(height: 8),
@@ -96,7 +96,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         textAlign: TextAlign.center,
                         style: TextStyle(
                           fontSize: isDesktop ? 24 : (isTablet ? 22 : 20),
-                          color: Colors.white,
+                          color: Colors.black87, // Dark grey for secondary text
                         ),
                       ),
                       const SizedBox(height: 30),
@@ -107,7 +107,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Email Address',
                           style: TextStyle(
                             fontSize: isDesktop ? 20 : (isTablet ? 18 : 16),
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.black87,
                           ),
                         ),
                       ),
@@ -115,14 +115,17 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _emailController,
                         keyboardType: TextInputType.emailAddress,
-                        style: TextStyle(color: Colors.white, fontSize: fontSize),
+                        style: TextStyle(color: Colors.black, fontSize: fontSize),
                         decoration: InputDecoration(
                           hintText: 'Enter your email',
-                          hintStyle: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: fontSize),
+                          hintStyle: TextStyle(color: Colors.black45, fontSize: fontSize),
                           filled: true,
-                          fillColor: Colors.white.withOpacity(0.2),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          prefixIcon: Icon(Icons.email_outlined, color: Colors.white.withOpacity(0.8), size: isDesktop ? 24 : 20),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey.shade300),
+                          ),
+                          prefixIcon: Icon(Icons.email_outlined, color: Colors.black54, size: isDesktop ? 24 : 20),
                         ),
                         validator: (value) => value == null || value.isEmpty ? 'Please enter your email' : (!value.contains('@') ? 'Invalid email' : null),
                       ),
@@ -134,7 +137,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           'Password',
                           style: TextStyle(
                             fontSize: isDesktop ? 20 : (isTablet ? 18 : 16),
-                            color: Colors.white.withOpacity(0.9),
+                            color: Colors.black87,
                           ),
                         ),
                       ),
@@ -142,18 +145,21 @@ class _LoginScreenState extends State<LoginScreen> {
                       TextFormField(
                         controller: _passwordController,
                         obscureText: !_isPasswordVisible,
-                        style: TextStyle(color: Colors.white, fontSize: fontSize),
+                        style: TextStyle(color: Colors.black, fontSize: fontSize),
                         decoration: InputDecoration(
                           hintText: 'Enter your password',
-                          hintStyle: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: fontSize),
+                          hintStyle: TextStyle(color: Colors.black45, fontSize: fontSize),
                           filled: true,
-                          fillColor: Colors.white.withOpacity(0.2),
-                          border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                          prefixIcon: Icon(Icons.lock_outline, color: Colors.white.withOpacity(0.8), size: isDesktop ? 24 : 20),
+                          fillColor: Colors.white,
+                          border: OutlineInputBorder(
+                            borderRadius: BorderRadius.circular(10),
+                            borderSide: BorderSide(color: Colors.grey.shade300),
+                          ),
+                          prefixIcon: Icon(Icons.lock_outline, color: Colors.black54, size: isDesktop ? 24 : 20),
                           suffixIcon: IconButton(
                             icon: Icon(
                               _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-                              color: Colors.white.withOpacity(0.8),
+                              color: Colors.black54,
                               size: isDesktop ? 24 : 20,
                             ),
                             onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
@@ -165,7 +171,13 @@ class _LoginScreenState extends State<LoginScreen> {
                         alignment: Alignment.centerRight,
                         child: TextButton(
                           onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const ForgotPasswordScreen())),
-                          child: Text('Forgot Password?', style: TextStyle(color: Colors.white, fontSize: fontSize)),
+                          child: Text(
+                            'Forgot Password?',
+                            style: TextStyle(
+                              color: Colors.black87,
+                              fontSize: fontSize,
+                            ),
+                          ),
                         ),
                       ),
                       const SizedBox(height: 16),
@@ -175,13 +187,26 @@ class _LoginScreenState extends State<LoginScreen> {
                         child: ElevatedButton(
                           onPressed: _isLoading ? null : _login,
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.transparent,
+                            backgroundColor: const Color(0xFF3bc1ff), // Solid blue button
                             foregroundColor: Colors.white,
-                            side: const BorderSide(color: Colors.white),
+                            side: const BorderSide(color: Color(0xFF3bc1ff)),
                           ),
                           child: _isLoading
-                              ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
-                              : Text('Login', style: TextStyle(fontSize: isDesktop ? 20 : (isTablet ? 18 : 16))),
+                              ? SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(
+                                    color: Colors.white,
+                                    strokeWidth: 2,
+                                  ),
+                                )
+                              : Text(
+                                  'Login',
+                                  style: TextStyle(
+                                    fontSize: isDesktop ? 20 : (isTablet ? 18 : 16),
+                                    color: Colors.white,
+                                  ),
+                                ),
                         ),
                       ),
                       Row(
@@ -189,11 +214,18 @@ class _LoginScreenState extends State<LoginScreen> {
                         children: [
                           Text(
                             "Don't have an account? ",
-                            style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: fontSize),
+                            style: TextStyle(color: Colors.black87, fontSize: fontSize),
                           ),
                           TextButton(
                             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => const SignupScreen())),
-                            child: Text('Sign up', style: TextStyle(color: Color(0xFFFFC0CB), fontSize: fontSize, fontWeight: FontWeight.bold)),
+                            child: Text(
+                              'Sign up',
+                              style: TextStyle(
+                                color: const Color(0xFFFFC0CB), // Keep pink for sign-up link
+                                fontSize: fontSize,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
                           ),
                         ],
                       ),

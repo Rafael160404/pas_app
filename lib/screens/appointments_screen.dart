@@ -518,31 +518,29 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
                       isDesktop: isDesktop,
                       isTablet: isTablet),
                   const SizedBox(height: 12),
+                  // Sex Dropdown
                   DropdownButtonFormField<String>(
                     value: _selectedSex,
                     decoration: InputDecoration(
                       labelText: 'Sex',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8)),
+                      labelStyle: TextStyle(color: Colors.black), // <--- BLACK LABEL
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                     ),
-                    style: TextStyle(fontSize: fontSize),
-                    items: ['Male', 'Female']
-                        .map((v) => DropdownMenuItem(value: v, child: Text(v)))
-                        .toList(),
+                    style: TextStyle(color: Colors.black), // <--- BLACK TEXT
+                    items: ['Male', 'Female'].map((v) => DropdownMenuItem(value: v, child: Text(v, style: TextStyle(color: Colors.black)))).toList(),
                     onChanged: (v) => setState(() => _selectedSex = v!),
                   ),
-                  const SizedBox(height: 12),
+
+                  // Doctor Dropdown
                   DropdownButtonFormField<String>(
                     value: _selectedDoctor,
                     decoration: InputDecoration(
                       labelText: 'Doctor',
-                      border: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(8)),
+                      labelStyle: TextStyle(color: Colors.black), // <--- BLACK LABEL
+                      border: OutlineInputBorder(borderRadius: BorderRadius.circular(8)),
                     ),
-                    style: TextStyle(fontSize: fontSize),
-                    items: _doctors
-                        .map((v) => DropdownMenuItem(value: v, child: Text(v)))
-                        .toList(),
+                    style: TextStyle(color: Colors.black), // <--- BLACK TEXT
+                    items: _doctors.map((v) => DropdownMenuItem(value: v, child: Text(v, style: TextStyle(color: Colors.black)))).toList(),
                     onChanged: (v) => setState(() => _selectedDoctor = v!),
                   ),
                   const SizedBox(height: 12),

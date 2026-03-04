@@ -522,9 +522,13 @@ class _HomeScreenState extends State<HomeScreen> {
                       zoom: 15,
                     ),
                     markers: _markers,
-                    myLocationEnabled: false,  // Disabled since we removed location
+                    myLocationEnabled: false,
                     myLocationButtonEnabled: false,
                     zoomControlsEnabled: true,
+                    zoomGesturesEnabled: true,      // <--- ENABLED FOR ZOOMING
+                    scrollGesturesEnabled: true,    // <--- ENABLED FOR MOVING/DRAGGING
+                    rotateGesturesEnabled: true,    // <--- ENABLED FOR ROTATING
+                    tiltGesturesEnabled: true,      // <--- ENABLED FOR TILTING
                     mapToolbarEnabled: false,
                   ),
                   if (!_isMapReady)
@@ -538,7 +542,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  Widget _buildFooter(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) {
+    Widget _buildFooter(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) {
     return Container(
       padding: EdgeInsets.all(isMobile ? 16 : 20),
       decoration: const BoxDecoration(
@@ -547,16 +551,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Column(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+          // REMOVED QUICK LINKS, JUST PAS / ICCT COLLEGES
+          Center(
+            child: Column(
+              children: [
                 Text(
-                  'PAS',
+                  'ICCT COLLEGES',  // <--- CHANGED TEXT
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: isDesktop ? 20 : (isTablet ? 18 : 16),
+                    fontSize: isDesktop ? 24 : (isTablet ? 22 : 20),
                   ),
                 ),
                 const SizedBox(height: 4),
@@ -564,42 +568,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   'Patient Appointment System',
                   style: TextStyle(
                     color: Colors.white.withOpacity(0.9),
-                    fontSize: isDesktop ? 14 : (isTablet ? 12 : 10),
+                    fontSize: isDesktop ? 16 : (isTablet ? 14 : 12),
                   ),
                 ),
-              ]),
-              Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(
-                  'Quick Links',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: isDesktop ? 18 : (isTablet ? 16 : 14),
-                  ),
-                ),
-                const SizedBox(height: 4),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Dashboard',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: isDesktop ? 14 : (isTablet ? 12 : 10),
-                    ),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    'Appointments',
-                    style: TextStyle(
-                      color: Colors.white70,
-                      fontSize: isDesktop ? 14 : (isTablet ? 12 : 10),
-                    ),
-                  ),
-                ),
-              ]),
-            ],
+              ],
+            ),
           ),
           const SizedBox(height: 16),
           Divider(color: Colors.white.withOpacity(0.3)),

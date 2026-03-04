@@ -80,7 +80,8 @@ class _SignupScreenState extends State<SignupScreen> {
         label,
         style: TextStyle(
           fontSize: isDesktop ? 18 : (isTablet ? 16 : 14),
-          color: Colors.white.withOpacity(0.9),
+          color: Colors.black87, // <--- CHANGED TO BLACK
+          fontWeight: FontWeight.w500,
         ),
       ),
       const SizedBox(height: 8),
@@ -88,18 +89,18 @@ class _SignupScreenState extends State<SignupScreen> {
         controller: controller,
         obscureText: obscureText,
         keyboardType: keyboardType,
-        style: TextStyle(color: Colors.white, fontSize: fontSize),
+        style: TextStyle(color: Colors.black, fontSize: fontSize), // <--- CHANGED TO BLACK
         decoration: InputDecoration(
           hintText: hint,
-          hintStyle: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: fontSize),
+          hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: fontSize), // <--- CHANGED TO GREY
           filled: true,
-          fillColor: Colors.white.withOpacity(0.2),
+          fillColor: Colors.white.withOpacity(0.8), // <--- MORE OPAQUE FOR BETTER READABILITY
           border: OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-          prefixIcon: Icon(icon, color: Colors.white.withOpacity(0.8), size: isDesktop ? 24 : 20),
+          prefixIcon: Icon(icon, color: Colors.grey.shade700, size: isDesktop ? 24 : 20), // <--- CHANGED TO DARK GREY
           suffixIcon: obscureText ? IconButton(
             icon: Icon(
               _isPasswordVisible ? Icons.visibility_off : Icons.visibility,
-              color: Colors.white.withOpacity(0.8),
+              color: Colors.grey.shade700, // <--- CHANGED TO DARK GREY
               size: isDesktop ? 24 : 20,
             ),
             onPressed: () => setState(() => _isPasswordVisible = !_isPasswordVisible),
@@ -135,7 +136,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 width: containerWidth,
                 padding: EdgeInsets.all(isMobile ? 20 : 30),
                 decoration: BoxDecoration(
-                  color: Colors.white.withOpacity(0.1),
+                  color: Colors.white.withOpacity(0.85), // <--- MORE OPAQUE BACKGROUND
                   borderRadius: BorderRadius.circular(15),
                   border: Border.all(color: Colors.white.withOpacity(0.2)),
                 ),
@@ -147,7 +148,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       style: TextStyle(
                         fontSize: isDesktop ? 80 : (isTablet ? 70 : 60),
                         fontWeight: FontWeight.bold,
-                        color: Colors.white,
+                        color: Colors.black, // <--- CHANGED TO BLACK
                       ),
                     ),
                     Text(
@@ -155,7 +156,7 @@ class _SignupScreenState extends State<SignupScreen> {
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: isDesktop ? 24 : (isTablet ? 22 : 20),
-                        color: Colors.white,
+                        color: Colors.black87, // <--- CHANGED TO BLACK
                       ),
                     ),
                     const SizedBox(height: 24),
@@ -223,9 +224,8 @@ class _SignupScreenState extends State<SignupScreen> {
                       child: ElevatedButton(
                         onPressed: _isLoading ? null : _signUp,
                         style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.transparent,
+                          backgroundColor: const Color(0xFF3bc1ff),
                           foregroundColor: Colors.white,
-                          side: const BorderSide(color: Colors.white),
                         ),
                         child: _isLoading
                             ? SizedBox(height: 20, width: 20, child: CircularProgressIndicator(color: Colors.white, strokeWidth: 2))
@@ -237,14 +237,14 @@ class _SignupScreenState extends State<SignupScreen> {
                       children: [
                         Text(
                           'Already have an account? ',
-                          style: TextStyle(color: Colors.white.withOpacity(0.9), fontSize: fontSize),
+                          style: TextStyle(color: Colors.black87, fontSize: fontSize), // <--- CHANGED TO BLACK
                         ),
                         TextButton(
                           onPressed: () => Navigator.pop(context),
                           child: Text(
                             'Log in',
                             style: TextStyle(
-                              color: Color(0xFFFFC0CB),
+                              color: Color(0xFFFFC0CB), // <--- KEPT PINK
                               fontSize: fontSize,
                               fontWeight: FontWeight.bold,
                             ),

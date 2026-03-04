@@ -61,7 +61,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
       appBar: AppBar(
         title: Text(
           'Forgot Password',
-          style: TextStyle(fontSize: isDesktop ? 24 : (isTablet ? 22 : 20)),
+          style: TextStyle(fontSize: isDesktop ? 24 : (isTablet ? 22 : 20), color: Colors.white),
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
@@ -81,7 +81,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               width: containerWidth,
               padding: EdgeInsets.all(isMobile ? 20 : 24),
               decoration: BoxDecoration(
-                color: Colors.white.withOpacity(0.1),
+                color: Colors.white.withOpacity(0.85), // <--- MORE OPAQUE FOR BETTER READABILITY
                 borderRadius: BorderRadius.circular(18),
                 border: Border.all(color: Colors.white.withOpacity(0.2)),
               ),
@@ -93,7 +93,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     style: TextStyle(
                       fontSize: isDesktop ? 48 : (isTablet ? 40 : 32),
                       fontWeight: FontWeight.bold,
-                      color: Colors.white,
+                      color: Colors.black, // <--- CHANGED TO BLACK
                     ),
                   ),
                   const SizedBox(height: 8),
@@ -101,25 +101,25 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     'Enter your email to generate reset link',
                     style: TextStyle(
                       fontSize: isDesktop ? 18 : (isTablet ? 16 : 14),
-                      color: Colors.white70,
+                      color: Colors.black87, // <--- CHANGED TO BLACK87
                     ),
                     textAlign: TextAlign.center,
                   ),
                   const SizedBox(height: 24),
                   TextFormField(
                     controller: _emailController,
-                    style: TextStyle(color: Colors.white, fontSize: fontSize),
+                    style: TextStyle(color: Colors.black, fontSize: fontSize), // <--- CHANGED TO BLACK
                     decoration: InputDecoration(
                       hintText: 'Enter email',
-                      hintStyle: TextStyle(color: Colors.white.withOpacity(0.6), fontSize: fontSize),
+                      hintStyle: TextStyle(color: Colors.grey.shade600, fontSize: fontSize), // <--- CHANGED TO GREY
                       filled: true,
-                      fillColor: Colors.white.withOpacity(0.2),
+                      fillColor: Colors.white.withOpacity(0.9), // <--- MORE OPAQUE
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       prefixIcon: Icon(
                         Icons.email_outlined,
-                        color: Colors.white.withOpacity(0.8),
+                        color: Colors.grey.shade700, // <--- CHANGED TO DARK GREY
                         size: isDesktop ? 24 : 20,
                       ),
                     ),
@@ -131,9 +131,8 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: ElevatedButton(
                       onPressed: _isLoading ? null : _resetPassword,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.transparent,
+                        backgroundColor: const Color(0xFF3bc1ff), // <--- SOLID COLOR
                         foregroundColor: Colors.white,
-                        side: const BorderSide(color: Colors.white),
                       ),
                       child: _isLoading
                           ? SizedBox(
@@ -156,7 +155,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
                     child: Text(
                       '← Back to Login',
                       style: TextStyle(
-                        color: Colors.white70,
+                        color: Colors.black87, // <--- CHANGED TO BLACK87
                         fontSize: fontSize,
                       ),
                     ),
