@@ -26,7 +26,7 @@ dependencies:
   google_maps_flutter: ^2.10.1
 
   # URL launcher
-  url_launcher: ^6.3.2
+  url_launcher: ^6.2.0
 
   # UI & utilities
   font_awesome_flutter: ^10.7.0  # Downgraded
