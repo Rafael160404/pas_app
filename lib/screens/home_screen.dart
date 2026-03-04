@@ -31,6 +31,7 @@ class _HomeScreenState extends State<HomeScreen> {
   GoogleMapController? _mapController;
   final Set<Marker> _markers = {};
   bool _isMapReady = false;
+  bool _isMapMoving = false;
 
   @override
   void initState() {
@@ -103,7 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text(
           'Pagan Appointment System',
-          style: TextStyle(fontSize: isDesktop ? 24 : (isTablet ? 20 : 18)),
+          style: TextStyle(fontSize: isDesktop ? 24 : (isTablet ? 20 : 18), color: Colors.white),
         ),
         backgroundColor: const Color(0xFF3bc1ff),
         foregroundColor: Colors.white,
@@ -515,24 +516,64 @@ class _HomeScreenState extends State<HomeScreen> {
               borderRadius: BorderRadius.circular(10),
               child: Stack(
                 children: [
-                  GoogleMap(
-                    onMapCreated: _onMapCreated,
-                    initialCameraPosition: CameraPosition(
-                      target: clinicLocation,
-                      zoom: 15,
-                    ),
-                    markers: _markers,
-                    myLocationEnabled: false,
-                    myLocationButtonEnabled: false,
-                    zoomControlsEnabled: true,
-                    zoomGesturesEnabled: true,      // <--- ENABLED FOR ZOOMING
-                    scrollGesturesEnabled: true,    // <--- ENABLED FOR MOVING/DRAGGING
-                    rotateGesturesEnabled: true,    // <--- ENABLED FOR ROTATING
-                    tiltGesturesEnabled: true,      // <--- ENABLED FOR TILTING
-                    mapToolbarEnabled: false,
-                  ),
-                  if (!_isMapReady)
+                  if (_isMapReady)
+                    GoogleMap(
+                      onMapCreated: _onMapCreated,
+                      initialCameraPosition: CameraPosition(
+                        target: clinicLocation,
+                        zoom: 15,
+                      ),
+                      markers: _markers,
+                      myLocationEnabled: false,
+                      myLocationButtonEnabled: false,
+                      zoomControlsEnabled: true,
+                      zoomGesturesEnabled: true,
+                      scrollGesturesEnabled: true,
+                      rotateGesturesEnabled: true,
+                      tiltGesturesEnabled: true,
+                      mapToolbarEnabled: false,
+                      minMaxZoomPreference: const MinMaxZoomPreference(10, 20),
+                      buildingsEnabled: false,
+                      trafficEnabled: false,
+                      onCameraMoveStarted: () {
+                        setState(() {
+                          _isMapMoving = true;
+                        });
+                      },
+                      onCameraIdle: () {
+                        setState(() {
+                          _isMapMoving = false;
+                        });
+                      },
+                    )
+                  else
                     const Center(child: CircularProgressIndicator()),
+                  
+                  if (_isMapMoving)
+                    Positioned(
+                      top: 10,
+                      right: 10,
+                      child: Container(
+                        padding: const EdgeInsets.all(8),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black.withOpacity(0.1),
+                              blurRadius: 5,
+                            ),
+                          ],
+                        ),
+                        child: const SizedBox(
+                          width: 20,
+                          height: 20,
+                          child: CircularProgressIndicator(
+                            strokeWidth: 2,
+                          ),
+                        ),
+                      ),
+                    ),
                 ],
               ),
             ),
@@ -542,7 +583,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-    Widget _buildFooter(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) {
+  Widget _buildFooter(BuildContext context, bool isMobile, bool isTablet, bool isDesktop) {
     return Container(
       padding: EdgeInsets.all(isMobile ? 16 : 20),
       decoration: const BoxDecoration(
@@ -551,12 +592,11 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       child: Column(
         children: [
-          // REMOVED QUICK LINKS, JUST PAS / ICCT COLLEGES
           Center(
             child: Column(
               children: [
                 Text(
-                  'ICCT COLLEGES',  // <--- CHANGED TEXT
+                  'ICCT COLLEGES',
                   style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
