@@ -63,7 +63,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
           'Forgot Password',
           style: TextStyle(fontSize: isDesktop ? 24 : (isTablet ? 22 : 20), color: Colors.white),
         ),
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.blue,
         elevation: 0,
         foregroundColor: Colors.white,
       ),
